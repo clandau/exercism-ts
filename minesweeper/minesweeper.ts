@@ -64,5 +64,5 @@ function evalMineBlock(char: string): string {
   if (typeof parseInt(char) === "number") {
     return (parseInt(char) + 1).toString();
   }
-  throw new Error("Invalid type");
+  throw new TypeError("Invalid argument");
 }
