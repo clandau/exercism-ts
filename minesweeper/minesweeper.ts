@@ -15,12 +15,12 @@ export default class Minesweeper {
       for (let j = 0; j < input[i].length; j++) {
         const rowMask = [...input[i]];
         if (input[i][j] === "*") {
-          priorAndPostMask[j] = evalBlock(priorAndPostMask[j]);
+          priorAndPostMask[j] = evalMineBlock(priorAndPostMask[j]);
           if (j - 1 >= 0) {
-            priorAndPostMask[j - 1] = evalBlock(priorAndPostMask[j - 1]);
+            priorAndPostMask[j - 1] = evalMineBlock(priorAndPostMask[j - 1]);
           }
           if (j + 1 < input[i].length) {
-            priorAndPostMask[j + 1] = evalBlock(priorAndPostMask[j + 1]);
+            priorAndPostMask[j + 1] = evalMineBlock(priorAndPostMask[j + 1]);
           }
           if (i - 1 >= 0) {
             returnMines[i - 1] = mergeRows(priorAndPostMask, prior);
@@ -38,7 +38,6 @@ export default class Minesweeper {
         }
       }
     }
-    console.log(returnMines);
     return returnMines.map((row) => row.join(""));
   }
 }
@@ -61,7 +60,7 @@ function mergeRows(a: string[], b: string[] | null): string[] {
   return returnArray;
 }
 
-function evalBlock(char: string): string {
+function evalMineBlock(char: string): string {
   if (char === " ") return "1";
   if (char === "*") return "*";
   if (typeof parseInt(char) === "number") {
