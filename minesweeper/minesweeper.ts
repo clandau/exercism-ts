@@ -1,5 +1,3 @@
-type BoxItems = "_" | " " | number;
-
 export default class Minesweeper {
   annotate(input: string[]): string[] {
     // make a copy with preexisting mines
