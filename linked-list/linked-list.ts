@@ -7,14 +7,14 @@ type Node<T> = {
 export default class LinkedList<T> {
   private head: Node<T> | undefined = undefined;
   private tail: Node<T> | undefined = undefined;
-  private length: number = 0;
+  private length = 0;
 
-  count() {
+  count(): number {
     return this.length;
   }
 
-  push(val: T) {
-    let node: Node<T> = { val };
+  push(val: T): LinkedList<T> {
+    const node: Node<T> = { val };
     if (!this.head) {
       this.head = node;
       this.tail = node;
@@ -28,7 +28,7 @@ export default class LinkedList<T> {
     return this;
   }
 
-  pop() {
+  pop(): T | null {
     if (!this.length) {
       return null;
     }
@@ -49,10 +49,11 @@ export default class LinkedList<T> {
       this.length--;
       return node.val;
     }
+    return null;
   }
   
-  unshift(val: T) {
-    let node: Node<T> = { val };
+  unshift(val: T): LinkedList<T> {
+    const node: Node<T> = { val };
     if (this.length === 0) {
       this.head = node;
       this.tail = node;
@@ -65,7 +66,7 @@ export default class LinkedList<T> {
     return this;
   }
 
-  shift() {
+  shift(): T | null {
     if (this.length === 0) return null;
     const node = this.head;
     if (this.length === 1) {
@@ -84,16 +85,17 @@ export default class LinkedList<T> {
       node.prior = undefined;
       return node.val;
     }
+    return null;
   }
 
-  delete(val: T) {
+  delete(val: T): Node<T> | null {
     let pointer = this.head;
     while (pointer) {
       if (pointer.val === val) {
         // remove
         const node = pointer;
-        let prior = pointer.prior;
-        let next = pointer.next;
+        const prior = pointer.prior;
+        const next = pointer.next;
         if (prior && next) {
           // not at the head or tail
           prior.next = next;
@@ -115,6 +117,6 @@ export default class LinkedList<T> {
       }
     }
     return null;
-  };
+  }
 }
 
