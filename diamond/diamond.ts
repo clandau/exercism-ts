@@ -9,7 +9,7 @@ export default class Diamond {
     // if the given letter is A, we can return it
     if (letterIndex === 0) return letter + "\n";
 
-    const resultArray = [];
+    const resultArray: string[] = [];
 
     const rowLength = letters.indexOf(letter) * 2 + 1;
     let rowNumber = 0;
@@ -17,7 +17,7 @@ export default class Diamond {
     while (rowNumber < letters.indexOf(letter)) {
       let outsideSpaceNumber = letterIndex - rowNumber;
       const insideSpaceNumber = rowLength - 2 - outsideSpaceNumber * 2;
-      let rowArray = [];
+      let rowArray: string[] = [];
 
       // start with the middle spaces
       if (insideSpaceNumber >= 0) {
@@ -42,7 +42,7 @@ export default class Diamond {
     const reversedArray = [...resultArray].reverse();
 
     // make middle row of the diamond
-    const rowArray = new Array(rowLength).fill(" ", 1, rowLength - 1);
+    const rowArray: string[] = new Array(rowLength).fill(" ", 1, rowLength - 1);
     rowArray[0] = letter;
     rowArray[rowArray.length - 1] = letter;
 
